@@ -9,11 +9,11 @@ const StatsCard = ({ title, value, trend, icon: Icon, color }) => (
     <Card className="glass-card p-3 h-100 border-0">
       <div className="d-flex justify-content-between align-items-start">
         <div style={{ zIndex: 1 }}>
-          {/* Correction ici : On force le blanc avec text-white et on réduit l'opacité manuellement */}
+          
           <p className="text-white opacity-50 small text-uppercase fw-bold mb-1" style={{ letterSpacing: '1px' }}>
             {title}
           </p>
-          {/* Correction ici : On s'assure que la valeur est en blanc pur */}
+          
           <h2 className="mb-0 fw-bold text-white" style={{ fontSize: '1.8rem' }}>
             {value}
           </h2>

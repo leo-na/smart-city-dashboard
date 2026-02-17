@@ -4,50 +4,91 @@ import { useDashboardData } from '../../hooks/useDashboardData';
 import StatsCard from '../../components/StatsCard';
 import ChartContainer from '../../components/ChartContainer';
 import DeviceTable from './DeviceTable';
+import CitySelector from './CitySelector';
 
 const DashboardLayout = () => {
-  const { data, metrics, loading } = useDashboardData();
-
-  if (loading) return (
-    <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-      <Spinner animation="grow" variant="primary" />
-      <span className="ms-3 text-primary fw-bold">Synchronisation Nexus...</span>
-    </div>
-  );
+  const { data, metrics, loading, searchCity } = useDashboardData();
 
   return (
     <div className="py-4">
-      <div className="d-flex justify-content-between align-items-center mb-5">
-        <div>
-          <h1 className="fw-bold mb-1">Nexus IoT <Badge bg="primary" className="ms-2 small">Live Paris</Badge></h1>
-          <p className="text-secondary">Statut du réseau : <span className="text-success">Optimal</span></p>
+      
+      <Row className="align-items-center mb-4 g-3">
+        <Col lg={6} md={12}>
+          <h1 className="fw-bold m-0 text-white">
+            Nexus IoT <Badge bg="primary" className="ms-2 shadow-primary">{metrics.city}</Badge>
+          </h1>
+          <p className="text-secondary mb-0 small">Surveillance des nœuds environnementaux en temps réel</p>
+        </Col>
+        <Col lg={6} md={12}>
+          <CitySelector onSearch={searchCity} />
+        </Col>
+      </Row>
+
+      {loading ? (
+        <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '60vh' }}>
+          <Spinner animation="grow" variant="primary" />
+          <span className="mt-3 text-primary fw-bold">Récupération des données mondiales...</span>
         </div>
-      </div>
+      ) : (
+        <>
+          
+          <Row className="g-4">
+            <Col lg={3} md={6}>
+              <StatsCard 
+                title="Température" 
+                value={`${metrics.temp}°C`} 
+                trend={+1.2} 
+                icon={Thermometer} 
+                color="warning" 
+              />
+            </Col>
+            <Col lg={3} md={6}>
+              <StatsCard 
+                title="Humidité" 
+                value={`${metrics.humidity}%`} 
+                trend={-0.5} 
+                icon={Droplets} 
+                color="primary" 
+              />
+            </Col>
+            <Col lg={3} md={6}>
+              <StatsCard 
+                title="Pression" 
+                value={`${metrics.pressure} hPa`} 
+                trend={0.1} 
+                icon={Wind} 
+                color="success" 
+              />
+            </Col>
+            <Col lg={3} md={6}>
+              <StatsCard 
+                title="Charge CPU" 
+                value="24%" 
+                trend={+3} 
+                icon={Cpu} 
+                color="info" 
+              />
+            </Col>
+          </Row>
 
-      <Row className="g-4">
-        <Col lg={3} md={6}>
-          <StatsCard title="Température" value={`${metrics.temp}°C`} trend={+2.4} icon={Thermometer} color="warning" />
-        </Col>
-        <Col lg={3} md={6}>
-          <StatsCard title="Humidité" value={`${metrics.humidity}%`} trend={-1.2} icon={Droplets} color="primary" />
-        </Col>
-        <Col lg={3} md={6}>
-          <StatsCard title="Pression" value={`${metrics.pressure}hPa`} trend={0} icon={Wind} color="success" />
-        </Col>
-        <Col lg={3} md={6}>
-          <StatsCard title="Charge CPU" value="32%" trend={+5} icon={Cpu} color="info" />
-        </Col>
-      </Row>
+          
+          <Row className="mt-2">
+            <Col lg={12}>
+              <ChartContainer 
+                title={`Analyse Thermique (12h) : ${metrics.city}`} 
+                chartData={data} 
+              />
+            </Col>
+          </Row>
 
-      <Row>
-        <Col lg={12}>
-          <ChartContainer title="Evolution Thermique en Temps Réel" chartData={data} />
-        </Col>
-      </Row>
-
-      <Row className="mb-5 mt-2">
-        <Col><DeviceTable /></Col>
-      </Row>
+          
+          <Row className="mt-4 mb-5">
+            <Col lg={12}>
+              <DeviceTable />
+            </Col>
+          </Row>
+        </>
+      )}
     </div>
   );
 };

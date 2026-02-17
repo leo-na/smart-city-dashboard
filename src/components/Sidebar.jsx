@@ -37,7 +37,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => (
             <item.icon size={20} className={`me-3 ${activeTab === item.id ? 'text-primary' : ''}`} />
             <span className="fw-medium">{item.label}</span>
             
-            {/* Indicateur visuel à droite */}
+           
             {activeTab === item.id && (
               <motion.div 
                 layoutId="activeBar"
