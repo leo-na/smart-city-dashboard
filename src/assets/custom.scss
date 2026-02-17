@@ -1,0 +1,61 @@
+
+@use "bootstrap/scss/bootstrap" as *;
+
+
+$primary: #00d2ff;
+$accent: #3a7bd5;
+$dark-bg: #0f172a;
+$card-bg: rgba(30, 41, 59, 0.7);
+$border-color: rgba(255, 255, 255, 0.1);
+
+
+body {
+  background-color: $dark-bg;
+  background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 100%);
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.glass-card {
+  background: $card-bg;
+  backdrop-filter: blur(12px);
+  border: 1px solid $border-color;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.sidebar {
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.95);
+  border-right: 1px solid $border-color;
+  position: sticky;
+  top: 0;
+}
+
+.transition-all {
+  transition: all 0.2s ease-in-out;
+}
+
+.shadow-primary {
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+}
+
+.sidebar .nav-link {
+  &:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
+  }
+}
+
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
