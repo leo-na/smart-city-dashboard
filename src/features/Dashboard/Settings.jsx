@@ -21,7 +21,7 @@ const Settings = () => {
       </div>
 
       <Row className="g-4">
-        {/* Interface */}
+        
         <Col lg={6}>
           <div className="glass-card p-4 h-100">
             <h5 className="mb-4 d-flex align-items-center text-primary">
@@ -33,7 +33,7 @@ const Settings = () => {
                   <Form.Label className="mb-0 fw-bold">Mode Sombre</Form.Label>
                   <div className="small text-white-50">Optimisation du rendu visuel.</div>
                 </div>
-                {/* Utilisation correcte du Switch dans React-Bootstrap */}
+                
                 <Form.Check 
                   type="switch" 
                   id="dark-mode-switch" 
@@ -45,7 +45,7 @@ const Settings = () => {
           </div>
         </Col>
 
-        {/* État API */}
+      
         <Col lg={12}>
           <div className="glass-card p-4">
             <h5 className="mb-4 d-flex align-items-center text-info">
