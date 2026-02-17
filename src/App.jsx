@@ -30,7 +30,7 @@ function App() {
       case 'security': 
         return <SecurityCenter />;
 
-      case 'settings': // Gestion de l'onglet Configuration
+      case 'settings': 
         return <Settings />;
 
       default:
