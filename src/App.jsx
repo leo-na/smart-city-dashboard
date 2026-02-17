@@ -4,7 +4,8 @@ import Sidebar from './components/Sidebar';
 import DashboardLayout from './features/Dashboard/DashboardLayout';
 import NodesMap from './features/Dashboard/NodesMap';
 import DeviceTable from './features/Dashboard/DeviceTable'; 
-import SecurityCenter from './features/Dashboard/SecurityCenter'; // Import ajouté
+import SecurityCenter from './features/Dashboard/SecurityCenter';
+import Settings from './features/Dashboard/Settings'; // Nouvel import
 import { AnimatePresence, motion } from 'framer-motion';
 
 function App() {
@@ -29,10 +30,13 @@ function App() {
       case 'security': 
         return <SecurityCenter />;
 
+      case 'settings': // Gestion de l'onglet Configuration
+        return <Settings />;
+
       default:
         return (
           <div className="vh-100 d-flex align-items-center justify-content-center">
-            <h2 className="text-white-50">Module {activeTab} en cours de développement...</h2>
+            <h2 className="text-white-50">Module {activeTab} non trouvé.</h2>
           </div>
         );
     }
@@ -42,9 +46,9 @@ function App() {
     <Container fluid className="p-0">
       <Row className="g-0">
         <Col lg={2}>
-          
           <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         </Col>
+        
         <Col lg={10} className="px-5" style={{ overflowY: 'auto', maxHeight: '100vh' }}>
           <AnimatePresence mode="wait">
             <motion.div
