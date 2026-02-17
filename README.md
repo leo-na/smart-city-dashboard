@@ -60,7 +60,7 @@ Le projet adopte une structure modulaire par fonctionnalités (Feature-based arc
 
 ```bash
 # Cloner le dépôt
-git clone [https://github.com/votre-username/nexus-iot-dashboard.git](https://github.com/votre-username/nexus-iot-dashboard.git)
+git clone [https://github.com/leo-na/smart-city-dashboard.git](https://github.com/leo-na/smart-city-dashboard.git)
 
 # Installer les dépendances
 npm install
